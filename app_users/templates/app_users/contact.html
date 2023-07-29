@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Contact Us {% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h1 style="color:#A5C53C;" > Contact Us/Feedback </h1>
+        <div class="row d-flex justify-content-center text-center">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'index' %}" style="color: #A5C53C;">Home</a></li>
+            <li class="disabled-text" style="color: #A5C53C;">Contact(Feedback)</li>
+          </ul>
+        </div>
+
+        <!-- divider -->
+        <hr style="color:#A5C53C;">
+
+        <!-- description -->
+        <h5 class="white-text my-4">Let's Stay Connected:Reach Us through Phone or Email!
+                </h5>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="text-center mt-5">
+              <h2 class="mb-5 font-weight-bold" style="color:#A5C53C;">Did We Impress You?</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8">
+                  <p class="grey-text">Your Experience Matters: Rate Our Impression on You!<br>We Aim to Amaze: Let Us Know if We Succeeded!</p>
+                </div>
+              </div>
+</section>
+              <div class="row justify content center">
+              <div class="col-md-12">
+                  <form method="post">
+                    <div class="form-group">
+                      {% csrf_token %}
+                      {{form|crispy}}
+                      <input type="submit" value="Submit Response" class="btn btn-success btn-lg btn-block">
+                    </div>
+                  </form>
+              </div>
+              </div>
+
+{% endblock %}

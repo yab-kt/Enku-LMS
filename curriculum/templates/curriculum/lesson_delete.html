@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Lesson Delete {% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#A5C53C" > Lesson Deletion </h2>
+        <div class="row d-flex justify-content-center text-center">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'index' %}" style="color: #A5C53C;">Home</a></li>
+            <li><a href="{% url 'curriculum:standard_list' %}" style="color: #A5C53C;">Curriculum</a></li>
+            <li><a href="{% url 'curriculum:subject_list' slug=lessons.Standard.slug %}" style="color: #A5C53C;">{{lessons.Standard.name}}</a></li>
+            <li><a href="{% url 'curriculum:lesson_list' standard=lessons.Standard.slug slug=lessons.subject.slug %}" style="color: #A5C53C;">{{lessons.subject.name}}</a></li>
+            <li><a href="{% url 'curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}" style="color: #A5C53C;">{{lessons.name}}</a></li>
+            <li class="disabled-text" style="color: #A5C53C;">Lesson Delete</li>
+          </ul>
+        </div>
+
+        <!-- divider -->
+        <hr style="color:#A5C53C">
+
+        <!-- description -->
+        <h4 class="white-text my-4">Delete the course!</h4>
+  </div>
+</header>
+{% endblock %}
+
+
+
+{% block content %}
+
+<section id="best-features" class="text-center">
+              <h2 class="mb-5 font-weight-bold" style="color:#A5C53C">Delete {{lessons.name}}</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8">
+                  <p class="grey-text">Course Deletion.</p>
+                </div>
+              </div>
+</section>
+
+<h3 class="mb-4" style="color:#A5C53C">Are you sure you want to delete {{lessons.name}} chapter?</h3>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="row">
+        <div class="col-md-4 mb-3 mr-3">
+                <input type="submit" value="Delete" class="btn btn-danger btn-block">
+        </div>
+        <div class="col-md-4 mb-3 mr-3">
+                <a href="{% url 'curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}" class="btn btn-warning btn-block">Cancel Deletion</a>
+        </div>
+  </div>
+</form>
+
+{% endblock %}
